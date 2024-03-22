@@ -1,6 +1,5 @@
 pipeline {
-	agent any 
-	
+	agent any
 	stages {
 	    stage('Checkout') {
 	        steps {
@@ -10,10 +9,22 @@ pipeline {
 	           steps {
 			  sh '/home/myuser/Documents/software/apache-maven-3.9.6/bin/mvn install'
 	                 }}
-            stage('parameter'){
-                  steps{
-                         parameter{
-                                    choice choices: ['DEV', 'QA', 'UAT'], name: 'ENV '
-                                     }}}	
-}}
+		stage('Deployment'){
+		    steps {
+			script {
+			 if (env.BRANCH_NAME == 'master') 
+                        {
+                        echo 'Hello from main branch'
+                        }
+                    	if (env.BRANCH_NAME == 'null') 
+                        {
+                        echo 'Hello from null branch'
+                        }
+                    	else {
+                        sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
+                        }
+                    
+			}}}}	
+}
+
 
