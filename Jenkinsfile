@@ -12,8 +12,8 @@ pipeline {
 	                 }}
             stage('parameter'){
                   steps{
-                          parameters {
-                                      choice choices: ['DEV', 'QA', 'UAT'], name: 'ENV '
-                                       }}}	
+                         parameter{
+                                    choice choices: ['DEV', 'QA', 'UAT'], name: 'ENV '
+                                     }}}	
 }}
 
